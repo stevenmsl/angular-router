@@ -3,6 +3,7 @@ import { Crisis } from '../crisis';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'src/app/dialog.service';
 import { Observable } from 'rxjs';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
     selector: 'app-crisis-detail',
@@ -17,7 +18,8 @@ export class CrisisDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         public dialogService: DialogService
-    ){}
+    ){
+    }
 
     ngOnInit() {
         this.route.data

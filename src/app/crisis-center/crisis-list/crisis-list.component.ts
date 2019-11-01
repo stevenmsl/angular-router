@@ -22,7 +22,7 @@ export class CrisisListComponent implements OnInit {
     ngOnInit() {
         this.crises$ = this.route.paramMap.pipe(
             switchMap(params => {
-                this.selectedId = +params.get('id');
+                this.selectedId = +params.get('id'); // use the + to convert a string to a number 
                 return this.service.getCrises();
             })
         );    
