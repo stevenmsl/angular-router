@@ -52,8 +52,15 @@ export class CrisisDetailComponent implements OnInit {
         // Pass along the crisis id if available
         // so that the CrisisListComponent can select that crisis.
         // Add a totally useless `foo` parameter for kicks.
-        // Relative navigation back to the crises
-        this.router.navigate(['../', {id: crisisId, foo: 'foo'}], { relativeTo: this.route});
+        // Relative navigation back to the crises - This will cause 
+        //the ngOnInit in the crisis-list component to be triggered again 
+        //to re-set the selectedId in the crisis-list component.
+        this.router.navigate(
+            [
+                '../', //to go up one level in the route path
+                {id: crisisId, foo: 'foo'}
+            ], 
+            { relativeTo: this.route});
     }
 
 }

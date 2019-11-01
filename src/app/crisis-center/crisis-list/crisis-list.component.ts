@@ -23,6 +23,7 @@ export class CrisisListComponent implements OnInit {
         this.crises$ = this.route.paramMap.pipe(
             switchMap(params => {
                 this.selectedId = +params.get('id'); // use the + to convert a string to a number 
+                console.log(`selectedId changed to ${this.selectedId}`);
                 return this.service.getCrises();
             })
         );    
