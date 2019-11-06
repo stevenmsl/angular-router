@@ -6,4 +6,9 @@
   <a routerLink="/login" routerLinkActive="active">Login</a>
 </nav>
 
-<router-outlet></router-outlet>
+<!-- 
+  @ + trigger name 
+-->
+<div [@routeAnimation]="getAnimationData(routerOutlet)" >
+    <router-outlet #routerOutlet="outlet" ></router-outlet>
+</div>

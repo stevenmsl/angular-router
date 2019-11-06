@@ -1,0 +1,16 @@
+<h2>HEROES</h2>
+<ul class="heroes">
+    <li *ngFor="let hero of heroes$ | async"
+        [class.selected]="hero.id === selectedId">
+        <!--
+            the link parameters array has two items: the routing path and a route parameter 
+            that specifies the id of the selected hero.
+            The router composes the destination URL from the array like this: localhost:4200/hero/15.
+        -->
+        <a [routerLink]="['/hero', hero.id]">
+            <span class="badge">{{ hero.id }}</span>{{ hero.name }}
+        </a>    
+    </li>
+</ul>
+
+<button routerLink="/sidekicks">Go to sidekicks</button>
