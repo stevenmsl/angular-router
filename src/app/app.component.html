@@ -4,11 +4,42 @@
   <a routerLink="/superheroes" routerLinkActive="active">Heroes</a>
   <a routerLink="/admin" rotuerLinkActive="active">Admin</a>
   <a routerLink="/login" routerLinkActive="active">Login</a>
+  <!--
+    You have to specify the named outlet in a link parameters array 
+    and bind it to the RouterLink with a property binding.
+    The link parameters array contains an object with a single outlets property 
+    whose value is another object keyed by one (or more) outlet names. 
+    In this case there is only the "popup" outlet property and its value is 
+    another link parameters array that specifies the compose route.
+    
+  -->
+  <a [routerLink]="[{ outlets: { popup: ['compose']} }]">Contact</a>
+
 </nav>
 
 <!-- 
   @ + trigger name 
--->
+  
+  The animation works as expected. However, you will see the following error when the page is reloaded.
+
+  Outlet is not activated
+    at RouterOutlet.get activatedRoute [as activatedRoute] (router.js:8687)
+    at AppComponent.getAnimationData     
 <div [@routeAnimation]="getAnimationData(routerOutlet)" >
     <router-outlet #routerOutlet="outlet" ></router-outlet>
 </div>
+
+-->
+
+<div>
+    <router-outlet #routerOutlet="outlet" ></router-outlet>
+</div>
+
+<!--
+  Named outlets are the targets of secondary routes.
+  Secondary routes : 
+  - They are independent of each other.
+  - They work in combination with other routes.
+  - They are displayed in named outlets.
+-->
+<router-outlet name="popup"></router-outlet>

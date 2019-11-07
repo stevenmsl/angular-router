@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -12,14 +13,17 @@ It is not part of the Angular core.
 import { AppRoutingModule } from './app-routing.module';
 import { HeroesModule } from './heroes/heroes.module';
 import { Router } from '@angular/router';
+import { ComposeMessageComponent } from './compose-message/compose-message.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ComposeMessageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     //Each routing module augments the route configuration in the order of import.
     HeroesModule, //imports HeroesRoutingModule
     AppRoutingModule //this should be listed the last

@@ -19,7 +19,7 @@ const crisisCenterRoutes: Routes = [
                 component: CrisisListComponent,
                 children: [
                     {
-                        path: ':id',
+                        path: ':id', // path: /crisis-center/2 (/crisis-center + '' + '/2').
                         component: CrisisDetailComponent,
                         canDeactivate: [CanDeactivateGuard],
                         resolve: {
@@ -27,7 +27,7 @@ const crisisCenterRoutes: Routes = [
                         }
                     },
                     {
-                        path: '',
+                        path: '', // path: /crisis-center (/crisis-center + '' + '').
                         component: CrisisCenterHomeComponent
                     }
                 ]
