@@ -11,13 +11,13 @@ const authRoutes: Routes = [
         Since the router deals with a global shared resource--location, we cannot have more than one router service active.
         forRoot creates a module that contains all the directives, the given routes, and the router service itself.
         forChild creates a module that contains all the directives and the given routes, but does not include the router service.
-    */
+   */
     imports: [
         RouterModule.forChild(authRoutes)
     ],
     exports: [
         RouterModule
     ]
-
+ 
 })
 export class AuthRoutingModule {}

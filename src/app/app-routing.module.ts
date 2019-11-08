@@ -12,6 +12,11 @@ const appRoutes: Routes =[
     outlet: 'popup'
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
+    canLoad:[AuthGuard]
+  },
+  {
     path: 'crisis-center',
     loadChildren: () => import('./crisis-center/crisis-center.module').then(mod => mod.CrisisCenterModule),
     data: { preload: true}     

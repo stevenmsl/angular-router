@@ -15,6 +15,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     constructor(private authService: AuthService, private router: Router) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        // store the attempted URL the user came 
+        // from using the RouterStateSnapshot.url 
         let url: string = state.url;
         
         return this.checkLogin(url);
@@ -29,6 +31,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return this.checkLogin(url);
     }    
 
+    //It’s not working. After logged in session_id is gone…
     checkLogin(url: string): boolean {
         if (this.authService.isLoggedIn) { return true; } 
         //store the attempted URL for redirecting

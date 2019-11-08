@@ -11,10 +11,11 @@ export class LoginComponent {
     message: string;
 
     constructor(public authService: AuthService, public router:Router) {
+        //console.log(this.authService.isLoggedIn); 
         this.setMessage();    
     }
     setMessage() {
-        this.message = 'Logged ' + (this.authService.isLoggedIn) ? 'in' : 'out';
+        this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
     }
 
     login() {
@@ -25,11 +26,17 @@ export class LoginComponent {
             if (this.authService.isLoggedIn) {
                 //Get the redirect URL from our auth service
                 //If no redirect has been set, use the default
+
+                //console.log(`redirectUrl: ${this.authService.redirectUrl}`);
+
                 let redirect = this.authService.redirectUrl ?
                     //this will convert a URL string into a tree structure 
                     //check https://blog.angularindepth.com/angular-routing-series-pillar-1-router-states-and-url-matching-12520e62d0fc                    
-                    this.router.parseUrl(this.authService.redirectUrl) :
+                    //this.router.parseUrl(`${this.authService.redirectUrl}?session_id=12345678#anchor}`) :
+                    this.router.parseUrl(this.authService.redirectUrl):
                     '/admin';
+                                 
+
                 //Set our navigation extras object
                 //that passes on our global query params and fragment
                 let navigationExtras: NavigationExtras = {
@@ -39,7 +46,7 @@ export class LoginComponent {
                         //from /results?page=1 to /view?page=1&page=2
                         this.router.navigate(['/view'], { queryParams: { page: 2 },  queryParamsHandling: "merge" });
                     */
-                    queryParamsHandling: 'preserve',
+                    queryParamsHandling: 'preserve', //Nothing is preserved either the session id or the fragment 
                     preserveFragment: true
                 };
 

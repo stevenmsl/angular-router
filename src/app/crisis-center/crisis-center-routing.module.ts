@@ -23,6 +23,12 @@ const crisisCenterRoutes: Routes = [
                         component: CrisisDetailComponent,
                         canDeactivate: [CanDeactivateGuard],
                         resolve: {
+                            /*
+                                - pre-fetching component data
+                                  It's preferable to pre-fetch data from the server so 
+                                  it's ready the moment the route is activated.                                  
+                                - This also allows you to handle errors before routing to the component.
+                            */
                             crisis: CrisisDetailResolverService        
                         }
                     },
