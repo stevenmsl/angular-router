@@ -1,19 +1,44 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { AuthService } from '../auth.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, NavigationStart } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
+//TODO Need to figure out how to preserve the global query params and fragment. 
+/*
+    The current implementation is not working. 
+*/
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
     message: string;
+    private state$: Observable<object>;
 
     constructor(public authService: AuthService, public router:Router) {
         //console.log(this.authService.isLoggedIn); 
         this.setMessage();    
     }
+
+    ngOnInit() {
+
+        //the following implementation is not working either
+        //the state is undefined
+        /*    
+        this.state$ = this.router.events.pipe(
+            filter( e => e instanceof NavigationStart),            
+            map(() => {
+                const s = this.router.getCurrentNavigation().extras.state;
+                console.log(s);
+                return s;
+            })            
+        );
+        */
+        //this.state$.subscribe( o => console.log(o)); 
+    }
+
     setMessage() {
         this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
     }
@@ -50,8 +75,13 @@ export class LoginComponent {
                     preserveFragment: true
                 };
 
+                console.log(navigationExtras);
+
                 //redirect the user
-                this.router.navigateByUrl(redirect, navigationExtras);         
+                this.router.navigateByUrl(
+                    redirect, 
+                    //navigationExtras
+                );         
             }
         });
     }

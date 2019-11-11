@@ -26,6 +26,9 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return this.canActivate(route, state);    
     }
 
+    /*
+        The router sets the canLoad() method's route parameter to the intended destination URL.
+    */
     canLoad(route: Route): boolean {
         let url = `/${route.path}`;
         return this.checkLogin(url);

@@ -9,7 +9,16 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 
 const adminRoutes: Routes = [
   {
+    /*
+      The Router supports empty path routes; 
+      use them to group routes together without 
+      adding any additional path segments to the URL.
+    */
     path:'',
+    /*
+      Users will still visit /admin and the AdminComponent still 
+      serves as the Routing Component containing child routes.
+    */
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [

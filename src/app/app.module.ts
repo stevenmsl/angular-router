@@ -1,3 +1,8 @@
+/*
+    Do not import any modules that will be lazy loaded when their route is requested.
+    - AdminModule
+*/
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
